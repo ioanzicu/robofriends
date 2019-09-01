@@ -9,7 +9,7 @@ const SearchBox = ({ searchField, searchChange }) => {
         className='pa3 ba b--green bg-lightest-blue'
         type='search'
         placeholder='Search Robot'
-      />{' '}
+      />
     </div>
   )
 }
