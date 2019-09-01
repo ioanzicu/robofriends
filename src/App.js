@@ -15,7 +15,9 @@ const App = () => {
 
   return (
     <div className='tc'>
-      <h1>Robo Friends</h1>
+      <h1 id='title' className='f1'>
+        Robo Friends
+      </h1>
       <SearchBox searchChange={onSearchChange} />
       <CardList robots={filteredRobots} />
     </div>
