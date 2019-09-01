@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import CardList from '../Components/CardList'
 import SearchBox from '../Components/SearchBox'
 import Scroll from '../Components/Scroll'
+import ErrorBoundry from '../Components/ErrorBoundry'
 
 const App = () => {
   const [searchField, setSearchField] = useState('')
@@ -32,7 +33,9 @@ const App = () => {
           </h1>
           <SearchBox searchChange={onSearchChange} />
           <Scroll>
-            <CardList robots={filteredRobots} />
+            <ErrorBoundry>
+              <CardList robots={filteredRobots} />
+            </ErrorBoundry>
           </Scroll>
         </>
       )}
