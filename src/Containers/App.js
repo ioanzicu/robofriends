@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import CardList from './Components/CardList'
-import SearchBox from './Components/SearchBox'
-import Scroll from './Components/Scroll'
-
-// import { robots } from './robots'
+import CardList from '../Components/CardList'
+import SearchBox from '../Components/SearchBox'
+import Scroll from '../Components/Scroll'
 
 const App = () => {
   const [searchField, setSearchField] = useState('')
@@ -25,7 +23,7 @@ const App = () => {
 
   return (
     <div className='tc'>
-      {robots.length === 0 ? (
+      {!robots.length ? (
         <h1>Loading...</h1>
       ) : (
         <>
