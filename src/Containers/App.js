@@ -1,57 +1,57 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import CardList from '../Components/CardList'
 import SearchBox from '../Components/SearchBox'
 import Scroll from '../Components/Scroll'
 import ErrorBoundry from '../Components/ErrorBoundry'
 
-import { setSearchField } from '../actions'
+import { setSearchField, requestRobots } from '../actions'
 
-const App = props => {
-  const [robots, setRobots] = useState([])
-
+const App = ({
+  searchField,
+  onSearchChange,
+  robots,
+  isPending,
+  onRequestRobots
+}) => {
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(users => setRobots(users))
-  }, [props])
-
-  const { searchField, onSearchChange } = props
+    onRequestRobots()
+  }, [onRequestRobots])
 
   const filteredRobots = robots.filter(robot =>
     robot.name.toLowerCase().includes(searchField.toLowerCase())
   )
 
+  const title = isPending ? 'Loading...' : 'Robo Friends'
+
   return (
     <div className='tc'>
-      {!robots.length ? (
-        <h1>Loading...</h1>
-      ) : (
-        <>
-          <h1 id='title' className='f1'>
-            Robo Friends
-          </h1>
-          <SearchBox searchChange={onSearchChange} />
-          <Scroll>
-            <ErrorBoundry>
-              <CardList robots={filteredRobots} />
-            </ErrorBoundry>
-          </Scroll>
-        </>
-      )}
+      <h1 id='title' className='f1'>
+        {title}
+      </h1>
+      <SearchBox searchChange={onSearchChange} />
+      <Scroll>
+        <ErrorBoundry>
+          <CardList robots={filteredRobots} />
+        </ErrorBoundry>
+      </Scroll>
     </div>
   )
 }
 
 const mapStateToProps = state => {
   return {
-    searchField: state.searchField
+    searchField: state.searchRobotsReducer.searchField,
+    robots: state.requestRobotsReducer.robots,
+    isPending: state.requestRobotsReducer.isPending,
+    error: state.requestRobotsReducer.error
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSearchChange: event => dispatch(setSearchField(event.target.value))
+    onSearchChange: event => dispatch(setSearchField(event.target.value)),
+    onRequestRobots: () => dispatch(requestRobots())
   }
 }
 
