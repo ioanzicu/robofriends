@@ -4,6 +4,7 @@ import CardList from '../Components/CardList'
 import SearchBox from '../Components/SearchBox'
 import Scroll from '../Components/Scroll'
 import ErrorBoundry from '../Components/ErrorBoundry'
+import { MemoizedHeader } from '../Components/Header'
 
 import { setSearchField, requestRobots } from '../actions'
 
@@ -26,9 +27,7 @@ const App = ({
 
   return (
     <div className='tc'>
-      <h1 id='title' className='f1'>
-        {title}
-      </h1>
+      <MemoizedHeader title={title} />
       <SearchBox searchChange={onSearchChange} />
       <Scroll>
         <ErrorBoundry>
