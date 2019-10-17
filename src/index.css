@@ -13,6 +13,7 @@ body {
 }
 
 #title {
+  font-display: swap;
   font-family: 'Audiowide', cursive;
   font-weight: 400;
   color: #0ccac4;
