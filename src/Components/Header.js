@@ -1,7 +1,6 @@
 import React, { memo } from 'react'
 
 const Header = ({ title }) => {
-  console.log('Header')
   return (
     <h1 id='title' className='f1'>
       {title}
