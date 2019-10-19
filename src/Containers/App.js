@@ -1,49 +1,17 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import CardList from '../Components/CardList'
-import SearchBox from '../Components/SearchBox'
-import Scroll from '../Components/Scroll'
-import ErrorBoundry from '../Components/ErrorBoundry'
-import { MemoizedHeader } from '../Components/Header'
+import MainPage from '../Components/MainPage'
 
 import { setSearchField, requestRobots } from '../actions'
 
-const App = ({
-  searchField,
-  onSearchChange,
-  robots,
-  isPending,
-  onRequestRobots
-}) => {
-  useEffect(() => {
-    onRequestRobots()
-  }, [onRequestRobots])
+const App = props => <MainPage {...props} />
 
-  const filteredRobots = robots.filter(robot =>
-    robot.name.toLowerCase().includes(searchField.toLowerCase())
-  )
-
-  const title = isPending ? 'Loading...' : 'Robo Friends'
-
-  return (
-    <div className='tc'>
-      <MemoizedHeader title={title} />
-      <SearchBox searchChange={onSearchChange} />
-      <Scroll>
-        <ErrorBoundry>
-          <CardList robots={filteredRobots} />
-        </ErrorBoundry>
-      </Scroll>
-    </div>
-  )
-}
-
-const mapStateToProps = state => {
+const mapStateToProps = ({ searchRobotsReducer, requestRobotsReducer }) => {
   return {
-    searchField: state.searchRobotsReducer.searchField,
-    robots: state.requestRobotsReducer.robots,
-    isPending: state.requestRobotsReducer.isPending,
-    error: state.requestRobotsReducer.error
+    searchField: searchRobotsReducer.searchField,
+    robots: requestRobotsReducer.robots,
+    isPending: requestRobotsReducer.isPending,
+    error: requestRobotsReducer.error
   }
 }
 
