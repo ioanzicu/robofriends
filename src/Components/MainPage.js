@@ -3,7 +3,7 @@ import CardList from '../Components/CardList'
 import SearchBox from '../Components/SearchBox'
 import Scroll from '../Components/Scroll'
 import ErrorBoundry from '../Components/ErrorBoundry'
-import { MemoizedHeader } from '../Components/Header'
+import Header from '../Components/Header'
 
 const MainPage = ({
   searchField,
@@ -24,7 +24,7 @@ const MainPage = ({
 
   return (
     <div className='tc'>
-      <MemoizedHeader title={title} />
+      <Header title={title} />
       <SearchBox searchChange={onSearchChange} />
       <Scroll>
         <ErrorBoundry>

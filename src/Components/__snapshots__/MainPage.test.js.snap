@@ -2,7 +2,7 @@
 
 exports[`renders MainPage without crashing 1`] = `
 "<div className=\\"tc\\">
-  <Memo(Header) title=\\"Robo Friends\\" />
+  <Memo() title=\\"Robo Friends\\" />
   <SearchBox searchChange={[undefined]} />
   <Scroll>
     <ErrorBoundry>

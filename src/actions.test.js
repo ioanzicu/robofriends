@@ -291,13 +291,14 @@ describe('actions', () => {
     const fetchData = () => dispatch =>
       fetch('https://jsonplaceholder.typicode.com/uers')
         .then(() => dispatch({}))
-        .catch(() => {
-          dispatch({ type: REQUEST_ROBOTS_FAILED, payload: 'Error' })
+        .catch(error => {
+          dispatch({ type: REQUEST_ROBOTS_FAILED, payload: error.toString() })
         })
 
     const expectedAction = {
       type: REQUEST_ROBOTS_FAILED,
-      payload: 'Error'
+      payload:
+        'Error: Actions may not have an undefined "type" property. Have you misspelled a constant? Action: {}'
     }
 
     const store = mockStore({})
