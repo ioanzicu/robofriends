@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.0.0
+      - image: circleci/node:8.10
     steps:
       - checkout
       - run: echo "yarn installing"
@@ -18,7 +18,7 @@ jobs:
       - run: yarn test
   hithere:
     docker:
-      - image: circleci/node:8.0.0
+      - image: circleci/node:8.10
     steps:
       - checkout
       - run: echo 'Linting'
