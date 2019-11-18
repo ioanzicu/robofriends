@@ -1,24 +1,34 @@
-version: 2.1
+version: 2
 jobs:
-  first:
-    machine:
-      image: ubuntu-1604:201903-01
+  build:
+    docker:
+      - image: circleci/node:12.13.0
     steps:
       - checkout
-      - run:
-          name: "Testing"
-          command: echo "Hi"
-  second:
-    machine:
-      image: ubuntu-1604:201903-01
+      - run: echo "yarn installing"
+      - run: yarn install
+      - run: CI=true yarn run build
+  test:
+    docker:
+      - image: circleci/node:12.13.0
     steps:
       - checkout
-      - run:
-          name: "Testing"
-          command: echo "Double Trouble"
+      - run: echo "testing"
+      - run: yarn install
+      - run: yarn test
+  hithere:
+    docker:
+      - image: circleci/node:12.13.0
+    steps:
+      - checkout
+      - run: echo 'Linting'
+      - run: echo 'hello robots!!!'
 workflows:
-  version: 2.1
-  first_second:
+  version: 2
+  build_test_and_hithere:
     jobs:
-      - first
-      - second
+      - build
+      - hithere
+      - test:
+          requires: 
+            - hithere
