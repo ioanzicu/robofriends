@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  first:
     machine:
       image: ubuntu-1604:201903-01
     steps:
@@ -8,3 +8,17 @@ jobs:
       - run:
           name: "Testing"
           command: echo "Hi"
+  second:
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - checkout
+      - run:
+          name: "Testing"
+          command: echo "Double Trouble"
+  workflows:
+    version: 2.1
+    first_second:
+      jobs:
+        - first
+        - second
