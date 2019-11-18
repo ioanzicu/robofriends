@@ -15,7 +15,7 @@ const mapStateToProps = ({ searchRobotsReducer, requestRobotsReducer }) => {
     
     requestRobotsReducer.robots,
     isPending: requestRobotsReducer.isPending,
-    error: requestRobotsReducer.error
+    error:  requestRobotsReducer.error
   }
 }
 
