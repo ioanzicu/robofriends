@@ -2,26 +2,32 @@ version: 2.1
 jobs:
   build:
     machine:
-      image: circleci/node:9.0
+      image: circleci/node:9.0.0
     steps:
       - checkout
-      - run: echo "yarn installing"
-      - run: yarn install
-      - run: CI=true yarn run build
+      - run: 
+          name: echo "yarn installing"
+          command: |
+            yarn install
+            CI=true yarn run build
   test:
     machine:
-      image: circleci/node:9.0
+      image: circleci/node:9.0.0
     steps:
       - checkout
-      - run: echo "testing"
-      - run: yarn install
-      - run: yarn test
+      - run: 
+          name: echo "testing"
+          command: | 
+            yarn install
+            yarn test
   hithere:
     machine:
-      image: circleci/node:9.0
+      image: circleci/node:9.0.0
     steps:
       - checkout
-      - run: echo 'hello robots!!!'
+      - run:
+          name: 'Linting'
+          command: echo 'hello robots!!!'
 workflows:
   version: 2.1
   build_test_and_lint:
