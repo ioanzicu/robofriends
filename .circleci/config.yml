@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     machine:
@@ -23,11 +23,11 @@ jobs:
       - checkout
       - run: echo 'hello robots!!!'
 workflows:
-  version: 2
+  version: 2.1
   build_test_and_lint:
     jobs:
       - build
       - hithere
       - test:
-        requires: 
-          -hithere
+          requires: 
+            -hithere
