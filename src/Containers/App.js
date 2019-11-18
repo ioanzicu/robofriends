@@ -9,16 +9,21 @@ const App = props => <MainPage {...props} />
 const mapStateToProps = ({ searchRobotsReducer, requestRobotsReducer }) => {
   return {
     searchField: searchRobotsReducer.searchField,
-    robots: requestRobotsReducer.robots,
+    
+    robots: 
+    
+    
+    requestRobotsReducer.robots,
     isPending: requestRobotsReducer.isPending,
     error: requestRobotsReducer.error
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps =   dispatch => {
   return {
     onSearchChange: event => dispatch(setSearchField(event.target.value)),
-    onRequestRobots: () => dispatch(requestRobots())
+    onRequestRobots: () => 
+    dispatch(requestRobots())
   }
 }
 
