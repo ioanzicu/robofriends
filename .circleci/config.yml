@@ -16,9 +16,9 @@ jobs:
       - run:
           name: "Testing"
           command: echo "Double Trouble"
-  workflows:
-    version: 2.1
-    first_second:
-      jobs:
-        - first
-        - second
+workflows:
+  version: 2.1
+  first_second:
+    jobs:
+      - first
+      - second
